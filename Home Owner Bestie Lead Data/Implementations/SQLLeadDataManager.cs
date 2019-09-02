@@ -21,9 +21,43 @@ namespace HomeOwnerBestie.LeadData.DataManager
             }
             catch (Exception ex)
             {
-               //TBD
+                //TBD
+                return null;
             }
-            return null;
         }
+
+        public string AddRentValuationRecord(HOBAppUser user, Address address, RentValuationData rentValuationData)
+        {
+            try
+            {
+                return leadDataProvider.AddRentValuationRecord(user, address, rentValuationData);
+            }
+            catch (Exception ex)
+            {
+                //TBD
+                return null;
+            }
+        }
+
+        public string UpdateHomeOwnerSpecifiedRent(string userId, decimal homeOwnerSpecifiedRent)
+        {
+            return leadDataProvider.UpdateHomeOwnerSpecifiedRent(userId, homeOwnerSpecifiedRent);
+        }
+
+        public RentValuationData FindRentValuationRecord(string updatedRentValuationRecord)
+        {
+            return leadDataProvider.FindRentValuationRecord(updatedRentValuationRecord);
+        }
+
+        public Address GetAddressFromRentValuationRecordId(string rentValuationRecordId)
+        {
+            return leadDataProvider.GetAddressFromRentValuationRecordId(rentValuationRecordId);
+        }
+
+        public string GetUserIdFromEmail(string email)
+        {
+            return leadDataProvider.GetUserIdFromEmail(email);
+        }
+
     }
 }

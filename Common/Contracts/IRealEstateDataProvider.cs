@@ -5,7 +5,6 @@ namespace HomeOwnerBestie.RealEstateData.DataProvider
 {
     public interface IRealEstateDataProvider
     {
-        int AddUser(HOBAppUser user);
-
+        RentValuationData RunRentEvaluation(Address address);
     }
 }

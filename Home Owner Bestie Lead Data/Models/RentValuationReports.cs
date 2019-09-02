@@ -15,6 +15,7 @@ namespace HomeOwnerBestie.LeadData.SQL.Models
         public DateTime? DateModified { get; set; }
         public decimal? HomeOwnerSpecifiedRent { get; set; }
         public string RentValuationRecordId { get; set; }
+        public string AddressId { get; set; }
 
         public virtual AppUsers User { get; set; }
     }

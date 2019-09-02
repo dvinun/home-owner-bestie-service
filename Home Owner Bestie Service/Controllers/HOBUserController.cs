@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HomeOwnerBestieService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("appuser")]
     [Produces("application/json")]
     [ApiController]
     public class HOBUserController : ControllerBase
@@ -22,11 +22,11 @@ namespace HomeOwnerBestieService.Controllers
         }
 
         // GET: api/HOBUser
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //[HttpGet]
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
         // GET: api/HOBUser/5
         //[HttpGet("{id}", Name = "Get")]

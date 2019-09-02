@@ -2,45 +2,48 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HomeOwnerBestie.Common;
+using HomeOwnerBestie.RealEstateData.DataManager;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomeOwnerBestieService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("rentvaluation")]
+    [Produces("application/json")]
     [ApiController]
     public class RentValuationController : ControllerBase
     {
-        // GET: api/RentValuation
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IRealEstateDataManager realEstateDataManager;
+
+        public RentValuationController(IRealEstateDataManager realEstateDataManager)
         {
-            return new string[] { "value1", "value2" };
+            this.realEstateDataManager = realEstateDataManager;
         }
 
-        // GET: api/RentValuation/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public class RentValuationParam
         {
-            return "value";
+            public HOBAppUser user { get; set; }
+            public Address address { get; set; }
         }
 
-        // POST: api/RentValuation
         [HttpPost]
-        public void Post([FromBody] string value)
+        public RentValuationData RentValuation([FromBody] RentValuationParam input)
         {
+            return realEstateDataManager.RunRentEvaluation(input.user, input.address);
         }
 
-        // PUT: api/RentValuation/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public class EmailRentValuationParam
         {
+            public HOBAppUser user { get; set; }
+            public decimal homeOwnerSpecifiedRent { get; set; }
         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPost("emailme")]
+        public bool Email([FromBody] EmailRentValuationParam input)
         {
+            return realEstateDataManager.EmailRentValuationReport(input.user, input.homeOwnerSpecifiedRent);
         }
+
     }
 }

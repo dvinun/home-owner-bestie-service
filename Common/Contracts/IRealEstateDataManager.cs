@@ -5,7 +5,7 @@ namespace HomeOwnerBestie.RealEstateData.DataManager
 {
     public interface IRealEstateDataManager
     {
-        int AddUser(HOBAppUser user);
-
+        RentValuationData RunRentEvaluation(HOBAppUser user, Address address);
+        bool EmailRentValuationReport(HOBAppUser user, decimal homeOwnerSpecifiedRent);
     }
 }

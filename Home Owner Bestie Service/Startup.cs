@@ -44,6 +44,7 @@ namespace HomeOwnerBestie.Service
                 .AddTransient(typeof(ILeadDataManager), leadDataAssembly.GetType(Configuration["LeadData:DataManager:Implementation"]))
                 .AddTransient(typeof(ILeadDataProvider), leadDataAssembly.GetType(Configuration["LeadData:DataProvider:Implementation"]));
 
+            // To overcome cross domain ... issues
             services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder =>
             {
                 builder

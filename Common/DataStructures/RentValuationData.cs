@@ -9,5 +9,7 @@ namespace HomeOwnerBestie.Common
         public decimal ValuationRentHigh { get; set; }
         public decimal ValuationRentLow { get; set; }
         public bool IsRentEstimateAvailable { get; set; }
-    }
+        public string Message { get; set; }
+        public decimal HomeOwnerSpecifiedRent { get; set; }
+    }   
 }

@@ -13,6 +13,7 @@ namespace HomeOwnerBestie.LeadData.SQL.Models
         public string AddressId { get; set; }
         public DateTime? DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
+        public string State { get; set; }
 
         public virtual AppUsers User { get; set; }
     }

@@ -25,6 +25,7 @@ namespace HomeOwnerBestie.LeadData.SQL.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=HomeOwnerBestieDB;Trusted_Connection=True;");
             }
         }
 
@@ -67,6 +68,10 @@ namespace HomeOwnerBestie.LeadData.SQL.Models
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
+
+                entity.Property(e => e.AddressId)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.AverageMonthlyRent).HasColumnType("decimal(18, 2)");
 
@@ -112,6 +117,10 @@ namespace HomeOwnerBestie.LeadData.SQL.Models
                 entity.Property(e => e.DateCreated).HasColumnType("datetime");
 
                 entity.Property(e => e.DateModified).HasColumnType("datetime");
+
+                entity.Property(e => e.State)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Street).HasMaxLength(512);
 
