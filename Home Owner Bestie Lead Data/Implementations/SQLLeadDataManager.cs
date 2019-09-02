@@ -13,9 +13,17 @@ namespace HomeOwnerBestie.LeadData.DataManager
             this.leadDataProvider = leadDataProvider;
         }
 
-        public int AddUser(HOBAppUser user)
+        public string AddUser(HOBAppUser user)
         {
-            return 1;
+            try
+            {
+                return leadDataProvider.AddUser(user);
+            }
+            catch (Exception ex)
+            {
+               //TBD
+            }
+            return null;
         }
     }
 }

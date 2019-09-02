@@ -6,12 +6,14 @@ using System.Runtime.Loader;
 using System.Threading.Tasks;
 using HomeOwnerBestie.LeadData.DataManager;
 using HomeOwnerBestie.LeadData.DataProvider;
+using HomeOwnerBestie.LeadData.SQL.Models;
 using HomeOwnerBestie.RealEstateData.DataManager;
 using HomeOwnerBestie.RealEstateData.DataProvider;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -51,6 +53,7 @@ namespace HomeOwnerBestie.Service
                     .AllowCredentials();
             }));
 
+            services.AddDbContext<HomeOwnerBestieDBContext>(options => options.UseSqlServer(Configuration["LeadData:DataProvider:DataConnection"]));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

@@ -5,7 +5,7 @@ namespace HomeOwnerBestie.LeadData.DataProvider
 {
     public interface ILeadDataProvider
     {
-        int AddUser(HOBAppUser user);
+        string AddUser(HOBAppUser user);
 
     }
 }

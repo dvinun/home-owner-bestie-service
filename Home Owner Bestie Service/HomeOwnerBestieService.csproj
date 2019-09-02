@@ -5,6 +5,7 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <RootNamespace>HomeOwnerBestie.Service</RootNamespace>
     <AssemblyName>HomeOwnerBestie.Service</AssemblyName>
+    <UserSecretsId>a9ee8e44-d42f-4018-9ff7-8a5db38f0563</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

@@ -37,10 +37,9 @@ namespace HomeOwnerBestieService.Controllers
 
         // POST: api/HOBUser
         [HttpPost]
-        public bool Post([FromBody] HOBAppUser user)
+        public string Post([FromBody] HOBAppUser user)
         {
-            int userId = leadDataManager.AddUser(user);
-            return userId > 0;
+            return leadDataManager.AddUser(user);
         }
 
         // PUT: api/HOBUser/5

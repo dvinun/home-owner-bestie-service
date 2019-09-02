@@ -5,6 +5,6 @@ namespace HomeOwnerBestie.LeadData.DataManager
 {
     public interface ILeadDataManager
     {
-        int AddUser(HOBAppUser user);
+        string AddUser(HOBAppUser user);
     }
 }
