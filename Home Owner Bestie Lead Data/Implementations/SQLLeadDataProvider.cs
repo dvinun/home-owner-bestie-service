@@ -158,7 +158,6 @@ namespace HomeOwnerBestie.LeadData.DataProvider
             homeOwnerBestieDBContext.RentValuationReports.Add(new RentValuationReports()
             {
                 AverageMonthlyRent = rentValuationData.AverageMonthlyRent,
-                HomeOwnerSpecifiedRent = rentValuationData.AverageMonthlyRent,
                 IsRentEstimateAvailable = rentValuationData.IsRentEstimateAvailable,
                 RentValuationRecordId = newRentValuationRecordGuid,
                 ValuationRentHigh = rentValuationData.ValuationRentHigh,
