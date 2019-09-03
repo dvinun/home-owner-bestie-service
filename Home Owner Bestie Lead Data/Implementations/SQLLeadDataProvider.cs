@@ -17,21 +17,35 @@ namespace HomeOwnerBestie.LeadData.DataProvider
 
         public string AddUser(HOBAppUser user)
         {
+            string existingUserId = string.Empty;
             var existingUser = FindUser(user.Email);
 
             // update
             if (existingUser != null)
             {
-                return UpdateUser(existingUser, user);
+                existingUserId = existingUser.UserId;
+                UpdateUser(existingUser, user);
             }
 
             // add if not present
             if (existingUser == null)
             {
-                return AddNewUser(user);
+                existingUserId = AddNewUser(user);
             }
 
+            // Add new IP Address if not found
+            var existingIPAddress = FindIPAddress(existingUserId, user.ClientIPAddress);
+            if (existingIPAddress == null)
+                AddNewIPAddress(existingUserId, user.ClientIPAddress);
+
             return string.Empty;
+        }
+
+        UserIpaddresses FindIPAddress(string userId, string clientIPAddress)
+        {
+            return homeOwnerBestieDBContext.UserIpaddresses
+                           .Where(item => item.UserId == userId && item.Ipaddress == clientIPAddress)
+                           .FirstOrDefault();
         }
 
         string UpdateUser(AppUsers existingUser, HOBAppUser hobUser)
@@ -40,6 +54,7 @@ namespace HomeOwnerBestie.LeadData.DataProvider
             existingUser.FirstName = hobUser.FirstName;
             existingUser.LastName = hobUser.LastName;
             existingUser.Phone = hobUser.Phone;
+
             homeOwnerBestieDBContext.SaveChanges();
             return existingUser.UserId;
         }
@@ -78,9 +93,25 @@ namespace HomeOwnerBestie.LeadData.DataProvider
             return newAddressGuid;
         }
 
+        string AddNewIPAddress(string userId, string clientIpAddress)
+        {
+            // add ip address too...
+            var newUserGuid = Guid.NewGuid().ToString();
+            homeOwnerBestieDBContext.UserIpaddresses.Add(new UserIpaddresses()
+            {
+                DateCreated = DateTime.Now,
+                Ipaddress = clientIpAddress,
+                IpaddressRecordId = newUserGuid,
+                UserId = userId,
+            });
+            homeOwnerBestieDBContext.SaveChanges();
+
+            return newUserGuid;
+        }
+
         string AddNewUser(HOBAppUser user)
         {
-            var newGuid = Guid.NewGuid().ToString();
+            var newUserGuid = Guid.NewGuid().ToString();
             homeOwnerBestieDBContext.AppUsers.Add(new AppUsers()
             {
                 DateCreated = DateTime.Now,
@@ -88,10 +119,11 @@ namespace HomeOwnerBestie.LeadData.DataProvider
                 LastName = user.LastName,
                 Email = user.Email,
                 Phone = user.Phone,
-                UserId = newGuid
+                UserId = newUserGuid
             });
+
             homeOwnerBestieDBContext.SaveChanges();
-            return newGuid;
+            return newUserGuid;
         }
 
         public string AddRentValuationRecord(HOBAppUser user, Address address, RentValuationData rentValuationData)
@@ -107,6 +139,11 @@ namespace HomeOwnerBestie.LeadData.DataProvider
                 // also update the user
                 UpdateUser(existingUser, user);
                 existingUserId = existingUser.UserId;
+
+                var IPAddress = FindIPAddress(existingUserId, user.ClientIPAddress);
+
+                if (IPAddress == null)
+                    AddNewIPAddress(existingUserId, user.ClientIPAddress);
             }
 
             // check if this address is already there. Or else add.
