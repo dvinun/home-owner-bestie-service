@@ -26,7 +26,7 @@ namespace HomeOwnerBestie.Common
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Port = emailConfig.Port;
                 SmtpServer.Credentials = new System.Net.NetworkCredential(emailConfig.UserName, emailConfig.Password);
-                SmtpServer.EnableSsl = true;
+                SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
 
                 SmtpServer.Send(mail);
                 return true;

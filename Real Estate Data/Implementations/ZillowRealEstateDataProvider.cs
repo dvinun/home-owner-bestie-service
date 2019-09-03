@@ -35,7 +35,6 @@ namespace HomeOwnerBestie.RealEstateData.DataProvider
             else if (isError) return new RentValuationData() { Message = "Zillow API Encountered Some Unknown Error" };
             else
             {
-
                 System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(searchresults));
                 searchresults searchresults;
                 using (StringReader sr = new StringReader(response))
@@ -43,14 +42,18 @@ namespace HomeOwnerBestie.RealEstateData.DataProvider
                     searchresults = (searchresults)ser.Deserialize(sr);
                 }
 
-                var rentZestimate = searchresults?.response?.results?.result?.rentzestimate;
-                var zestimate = searchresults?.response?.results?.result?.rentzestimate;
+                var rentZestimateResults = searchresults?.response?.results;
+                var zestimateResults = searchresults?.response?.results;
+
+                // get the last result set. Because, the last result is always the latest.
+                var rentZestimate = rentZestimateResults[rentZestimateResults.Length-1].rentzestimate;
+                var zestimate = zestimateResults[zestimateResults.Length - 1].zestimate;
 
                 RentValuationData rentValuationData = new RentValuationData();
 
                 if (rentZestimate != null)
                 {
-                    rentValuationData.AverageMonthlyRent = rentZestimate.amount.Value;
+                    rentValuationData.AverageMonthlyRent = Convert.ToDecimal(rentZestimate.amount.Value);
                     rentValuationData.ValueChangedIn30Days = Convert.ToDecimal(rentZestimate.valueChange.Value);
                     rentValuationData.ValuationRentLow = Convert.ToDecimal(rentZestimate.valuationRange.low.Value);
                     rentValuationData.ValuationRentHigh = Convert.ToDecimal(rentZestimate.valuationRange.high.Value);
@@ -58,7 +61,7 @@ namespace HomeOwnerBestie.RealEstateData.DataProvider
                 }
                 else if (zestimate != null)
                 {
-                    rentValuationData.AverageMonthlyRent = Decimal.Multiply(zestimate.amount.Value, 0.05M);
+                    rentValuationData.AverageMonthlyRent = Decimal.Multiply(Convert.ToDecimal(zestimate.amount.Value), 0.05M);
                     rentValuationData.ValueChangedIn30Days = 0;
                     rentValuationData.ValuationRentHigh = rentValuationData.AverageMonthlyRent + Decimal.Multiply(rentValuationData.AverageMonthlyRent, 0.1M);
                     rentValuationData.ValuationRentLow = rentValuationData.AverageMonthlyRent - Decimal.Multiply(rentValuationData.AverageMonthlyRent, 0.1M);

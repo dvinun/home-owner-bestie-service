@@ -4,7 +4,6 @@ using System.Text;
 
 namespace HomeOwnerBestie.RealEstateData.Zillow
 {
-
     // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
     /// <remarks/>
     [System.SerializableAttribute()]
@@ -112,7 +111,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
 
         private string textField;
 
-        private byte codeField;
+        private string codeField;
 
         /// <remarks/>
         public string text
@@ -128,7 +127,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
-        public byte code
+        public string code
         {
             get
             {
@@ -149,10 +148,11 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     public partial class response
     {
 
-        private responseResults resultsField;
+        private responseResult[] resultsField;
 
         /// <remarks/>
-        public responseResults results
+        [System.Xml.Serialization.XmlArrayItemAttribute("result", IsNullable = false)]
+        public responseResult[] results
         {
             get
             {
@@ -169,43 +169,20 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResults
-    {
-
-        private responseResultsResult resultField;
-
-        /// <remarks/>
-        public responseResultsResult result
-        {
-            get
-            {
-                return this.resultField;
-            }
-            set
-            {
-                this.resultField = value;
-            }
-        }
-    }
-
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResult
+    public partial class responseResult
     {
 
         private string zpidField;
 
-        private responseResultsResultLinks linksField;
+        private responseResultLinks linksField;
 
-        private responseResultsResultAddress addressField;
+        private responseResultAddress addressField;
 
-        private responseResultsResultZestimate zestimateField;
+        private responseResultZestimate zestimateField;
 
-        private responseResultsResultRentzestimate rentzestimateField;
+        private responseResultRentzestimate rentzestimateField;
 
-        private responseResultsResultLocalRealEstate localRealEstateField;
+        private responseResultLocalRealEstate localRealEstateField;
 
         /// <remarks/>
         public string zpid
@@ -221,7 +198,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
-        public responseResultsResultLinks links
+        public responseResultLinks links
         {
             get
             {
@@ -234,7 +211,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
-        public responseResultsResultAddress address
+        public responseResultAddress address
         {
             get
             {
@@ -247,7 +224,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
-        public responseResultsResultZestimate zestimate
+        public responseResultZestimate zestimate
         {
             get
             {
@@ -260,7 +237,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
-        public responseResultsResultRentzestimate rentzestimate
+        public responseResultRentzestimate rentzestimate
         {
             get
             {
@@ -273,7 +250,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
-        public responseResultsResultLocalRealEstate localRealEstate
+        public responseResultLocalRealEstate localRealEstate
         {
             get
             {
@@ -290,7 +267,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultLinks
+    public partial class responseResultLinks
     {
 
         private string homedetailsField;
@@ -358,7 +335,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultAddress
+    public partial class responseResultAddress
     {
 
         private string streetField;
@@ -456,23 +433,23 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultZestimate
+    public partial class responseResultZestimate
     {
 
-        private responseResultsResultZestimateAmount amountField;
+        private responseResultZestimateAmount amountField;
 
         private string lastupdatedField;
 
-        private responseResultsResultZestimateOneWeekChange oneWeekChangeField;
+        private responseResultZestimateOneWeekChange oneWeekChangeField;
 
-        private responseResultsResultZestimateValueChange valueChangeField;
+        private responseResultZestimateValueChange valueChangeField;
 
-        private responseResultsResultZestimateValuationRange valuationRangeField;
+        private responseResultZestimateValuationRange valuationRangeField;
 
         private string percentileField;
 
         /// <remarks/>
-        public responseResultsResultZestimateAmount amount
+        public responseResultZestimateAmount amount
         {
             get
             {
@@ -499,7 +476,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
-        public responseResultsResultZestimateOneWeekChange oneWeekChange
+        public responseResultZestimateOneWeekChange oneWeekChange
         {
             get
             {
@@ -512,7 +489,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
-        public responseResultsResultZestimateValueChange valueChange
+        public responseResultZestimateValueChange valueChange
         {
             get
             {
@@ -525,7 +502,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
-        public responseResultsResultZestimateValuationRange valuationRange
+        public responseResultZestimateValuationRange valuationRange
         {
             get
             {
@@ -555,7 +532,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultZestimateAmount
+    public partial class responseResultZestimateAmount
     {
 
         private string currencyField;
@@ -595,7 +572,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultZestimateOneWeekChange
+    public partial class responseResultZestimateOneWeekChange
     {
 
         private bool deprecatedField;
@@ -619,10 +596,12 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultZestimateValueChange
+    public partial class responseResultZestimateValueChange
     {
 
         private string durationField;
+
+        private bool durationFieldSpecified;
 
         private string currencyField;
 
@@ -643,6 +622,20 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool durationSpecified
+        {
+            get
+            {
+                return this.durationFieldSpecified;
+            }
+            set
+            {
+                this.durationFieldSpecified = value;
+            }
+        }
+
+        /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string currency
         {
@@ -675,15 +668,15 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultZestimateValuationRange
+    public partial class responseResultZestimateValuationRange
     {
 
-        private responseResultsResultZestimateValuationRangeLow lowField;
+        private responseResultZestimateValuationRangeLow lowField;
 
-        private responseResultsResultZestimateValuationRangeHigh highField;
+        private responseResultZestimateValuationRangeHigh highField;
 
         /// <remarks/>
-        public responseResultsResultZestimateValuationRangeLow low
+        public responseResultZestimateValuationRangeLow low
         {
             get
             {
@@ -696,7 +689,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
-        public responseResultsResultZestimateValuationRangeHigh high
+        public responseResultZestimateValuationRangeHigh high
         {
             get
             {
@@ -713,7 +706,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultZestimateValuationRangeLow
+    public partial class responseResultZestimateValuationRangeLow
     {
 
         private string currencyField;
@@ -753,7 +746,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultZestimateValuationRangeHigh
+    public partial class responseResultZestimateValuationRangeHigh
     {
 
         private string currencyField;
@@ -793,21 +786,21 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultRentzestimate
+    public partial class responseResultRentzestimate
     {
 
-        private responseResultsResultRentzestimateAmount amountField;
+        private responseResultRentzestimateAmount amountField;
 
         private string lastupdatedField;
 
-        private responseResultsResultRentzestimateOneWeekChange oneWeekChangeField;
+        private responseResultRentzestimateOneWeekChange oneWeekChangeField;
 
-        private responseResultsResultRentzestimateValueChange valueChangeField;
+        private responseResultRentzestimateValueChange valueChangeField;
 
-        private responseResultsResultRentzestimateValuationRange valuationRangeField;
+        private responseResultRentzestimateValuationRange valuationRangeField;
 
         /// <remarks/>
-        public responseResultsResultRentzestimateAmount amount
+        public responseResultRentzestimateAmount amount
         {
             get
             {
@@ -834,7 +827,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
-        public responseResultsResultRentzestimateOneWeekChange oneWeekChange
+        public responseResultRentzestimateOneWeekChange oneWeekChange
         {
             get
             {
@@ -847,7 +840,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
-        public responseResultsResultRentzestimateValueChange valueChange
+        public responseResultRentzestimateValueChange valueChange
         {
             get
             {
@@ -860,7 +853,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
-        public responseResultsResultRentzestimateValuationRange valuationRange
+        public responseResultRentzestimateValuationRange valuationRange
         {
             get
             {
@@ -877,12 +870,12 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultRentzestimateAmount
+    public partial class responseResultRentzestimateAmount
     {
 
         private string currencyField;
 
-        private ushort valueField;
+        private string valueField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -900,7 +893,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
 
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
-        public ushort Value
+        public string Value
         {
             get
             {
@@ -917,7 +910,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultRentzestimateOneWeekChange
+    public partial class responseResultRentzestimateOneWeekChange
     {
 
         private bool deprecatedField;
@@ -941,7 +934,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultRentzestimateValueChange
+    public partial class responseResultRentzestimateValueChange
     {
 
         private string durationField;
@@ -997,15 +990,15 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultRentzestimateValuationRange
+    public partial class responseResultRentzestimateValuationRange
     {
 
-        private responseResultsResultRentzestimateValuationRangeLow lowField;
+        private responseResultRentzestimateValuationRangeLow lowField;
 
-        private responseResultsResultRentzestimateValuationRangeHigh highField;
+        private responseResultRentzestimateValuationRangeHigh highField;
 
         /// <remarks/>
-        public responseResultsResultRentzestimateValuationRangeLow low
+        public responseResultRentzestimateValuationRangeLow low
         {
             get
             {
@@ -1018,7 +1011,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
-        public responseResultsResultRentzestimateValuationRangeHigh high
+        public responseResultRentzestimateValuationRangeHigh high
         {
             get
             {
@@ -1035,7 +1028,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultRentzestimateValuationRangeLow
+    public partial class responseResultRentzestimateValuationRangeLow
     {
 
         private string currencyField;
@@ -1075,7 +1068,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultRentzestimateValuationRangeHigh
+    public partial class responseResultRentzestimateValuationRangeHigh
     {
 
         private string currencyField;
@@ -1115,13 +1108,13 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultLocalRealEstate
+    public partial class responseResultLocalRealEstate
     {
 
-        private responseResultsResultLocalRealEstateRegion regionField;
+        private responseResultLocalRealEstateRegion regionField;
 
         /// <remarks/>
-        public responseResultsResultLocalRealEstateRegion region
+        public responseResultLocalRealEstateRegion region
         {
             get
             {
@@ -1138,12 +1131,12 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultLocalRealEstateRegion
+    public partial class responseResultLocalRealEstateRegion
     {
 
         private string zindexValueField;
 
-        private responseResultsResultLocalRealEstateRegionLinks linksField;
+        private responseResultLocalRealEstateRegionLinks linksField;
 
         private string nameField;
 
@@ -1165,7 +1158,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
         }
 
         /// <remarks/>
-        public responseResultsResultLocalRealEstateRegionLinks links
+        public responseResultLocalRealEstateRegionLinks links
         {
             get
             {
@@ -1224,7 +1217,7 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class responseResultsResultLocalRealEstateRegionLinks
+    public partial class responseResultLocalRealEstateRegionLinks
     {
 
         private string overviewField;
@@ -1272,7 +1265,6 @@ namespace HomeOwnerBestie.RealEstateData.Zillow
             }
         }
     }
-
 
 
 }

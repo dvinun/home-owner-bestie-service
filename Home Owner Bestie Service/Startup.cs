@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Loader;
-using System.Threading.Tasks;
+﻿using System.Runtime.Loader;
 using HomeOwnerBestie.LeadData.DataManager;
 using HomeOwnerBestie.LeadData.DataProvider;
 using HomeOwnerBestie.LeadData.SQL.Models;
@@ -11,13 +6,11 @@ using HomeOwnerBestie.RealEstateData.DataManager;
 using HomeOwnerBestie.RealEstateData.DataProvider;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 
 namespace HomeOwnerBestie.Service
@@ -61,7 +54,7 @@ namespace HomeOwnerBestie.Service
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,
             IRealEstateDataProvider realEstateDataProvider, IRealEstateDataManager realEstateDataManager,
-            ILeadDataManager leadDataManager, ILeadDataProvider leadDataProvider)
+            ILeadDataManager leadDataManager, ILeadDataProvider leadDataProvider, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -73,6 +66,7 @@ namespace HomeOwnerBestie.Service
                 app.UseHsts();
             }
 
+            
             app.UseCors("ApiCorsPolicy");
             app.UseCors(builder =>
             builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());

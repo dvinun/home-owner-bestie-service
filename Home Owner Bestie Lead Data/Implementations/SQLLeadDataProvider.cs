@@ -38,7 +38,7 @@ namespace HomeOwnerBestie.LeadData.DataProvider
             if (existingIPAddress == null)
                 AddNewIPAddress(existingUserId, user.ClientIPAddress);
 
-            return string.Empty;
+            return existingUserId;
         }
 
         UserIpaddresses FindIPAddress(string userId, string clientIPAddress)
