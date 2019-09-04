@@ -61,10 +61,13 @@ namespace HomeOwnerBestie.RealEstateData.DataProvider
                 }
                 else if (zestimate != null)
                 {
+                    if(Convert.ToDecimal(zestimate.amount.Value) == 0) 
+                        return new RentValuationData() { Message = "No Data Found" };
+
                     rentValuationData.AverageMonthlyRent = Decimal.Multiply(Convert.ToDecimal(zestimate.amount.Value), 0.05M);
                     rentValuationData.ValueChangedIn30Days = 0;
-                    rentValuationData.ValuationRentHigh = rentValuationData.AverageMonthlyRent + Decimal.Multiply(rentValuationData.AverageMonthlyRent, 0.1M);
-                    rentValuationData.ValuationRentLow = rentValuationData.AverageMonthlyRent - Decimal.Multiply(rentValuationData.AverageMonthlyRent, 0.1M);
+                    rentValuationData.ValuationRentHigh = Decimal.Multiply(Convert.ToDecimal(zestimate.amount.Value), 0.1M);
+                    rentValuationData.ValuationRentLow = Decimal.Multiply(Convert.ToDecimal(zestimate.amount.Value), 0.1M);
                     rentValuationData.IsRentEstimateAvailable = false;
                 }
 
