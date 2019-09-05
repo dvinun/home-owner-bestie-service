@@ -22,7 +22,7 @@ namespace HomeOwnerBestie.RealEstateData.DataManager
         public RentValuationData RunRentEvaluation(HOBAppUser user, Address address)
         {
             RentValuationData rentValuationData = realEstateDataProvider.RunRentEvaluation(address);
-            if (rentValuationData == null || rentValuationData.AverageMonthlyRent == 0) return rentValuationData;
+            if (rentValuationData == null) return rentValuationData;
 
             string rentValuationRecordId = leadDataManager.AddRentValuationRecord(user, address, rentValuationData);
             if (string.IsNullOrWhiteSpace(rentValuationRecordId)) return null;

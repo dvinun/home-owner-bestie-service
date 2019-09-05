@@ -9,6 +9,7 @@ namespace HomeOwnerBestie.LeadData.DataProvider
     public class SQLLeadDataProvider : ILeadDataProvider
     {
         HomeOwnerBestieDBContext homeOwnerBestieDBContext = null;
+        static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public SQLLeadDataProvider(HomeOwnerBestieDBContext homeOwnerBestieDBContext)
         {
@@ -17,6 +18,8 @@ namespace HomeOwnerBestie.LeadData.DataProvider
 
         public string AddUser(HOBAppUser user)
         {
+            Logger.Info(user.FirstName + " " + user.LastName + " " + user.Email);
+
             string existingUserId = string.Empty;
             var existingUser = FindUser(user.Email);
 
@@ -185,6 +188,7 @@ namespace HomeOwnerBestie.LeadData.DataProvider
 
             // Update the record with homeOwnerSpecifiedRent
             lastCreatedRentValuationRecord.HomeOwnerSpecifiedRent = homeOwnerSpecifiedRent;
+            homeOwnerBestieDBContext.SaveChanges();
             return lastCreatedRentValuationRecord.RentValuationRecordId;
         }
 
