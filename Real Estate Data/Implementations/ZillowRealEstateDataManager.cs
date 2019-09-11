@@ -51,7 +51,7 @@ namespace HomeOwnerBestie.RealEstateData.DataManager
                             + "<p> IP Address: " + user.ClientIPAddress + "</p>"
                             + "<p> Phone: " + user.Phone + "</p>"
                             + "<h3>Rent Valuation Data</h3>"
-                            + "<p> Home Owner Specified Rent: " + rentValuationData.HomeOwnerSpecifiedRent + "</p>"
+                            + "<p> Home Owner Specified Rent: " + (rentValuationData.HomeOwnerSpecifiedRent == 0 ? "None" : rentValuationData.HomeOwnerSpecifiedRent.ToString() )+ "</p>"
                             + "<p> Average Monthly Rent: " + rentValuationData.AverageMonthlyRent + "</p>"
                             + "<p> Valuation Range High : " + rentValuationData.ValuationRentHigh + "</p>"
                             + "<p> Valuation Range Low : " + rentValuationData.ValuationRentLow + "</p>"
